@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/amp/', 'AmpController@index');
+Route::get('/amp/show', 'AmpController@show');
+Route::get('/amp_data/', 'AmpController@getdata');
+Route::get('/amp_orm/', 'CryptoController@index');
