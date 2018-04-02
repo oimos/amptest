@@ -19,7 +19,7 @@
 @endsection
 
 @section('menubar')
-<ul>
+<ul class="h-menu">
     <p class="menutitle">メニュー</p>
     <li>1</li>
     <li>2</li>
@@ -54,6 +54,11 @@
   </template>
 </amp-list>
 @endsection
+
+<amp-state id="favorite"
+  credentials="include"
+  src="/favorite">
+</amp-state>
 
 @section('footer')
 copyright @2018

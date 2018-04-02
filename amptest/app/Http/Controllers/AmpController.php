@@ -13,6 +13,8 @@ class AmpController extends Controller
 {
     public function index(Request $request)
     {
+        $styles = $this->getStyleCustom();
+
         if (isset($request->name))
         {
             $param = ['name' => $request->name];
@@ -20,7 +22,7 @@ class AmpController extends Controller
         } else {
             $items = DB::table('cryptos')->get();;
         }
-        return view('amp.index', ['items' => $items]);
+        return view('amp.index', ['items' => $items, 'styles' => $styles]);
     }
 
     public function show(Request $request)
@@ -36,5 +38,17 @@ class AmpController extends Controller
         // $items = DB::table('cryptos')->where('name', $name)->get();
         // return $items;
         return new CryptoResource(Crypto::all());
+    }
+
+    public function getStyleCustom(){
+        $data = '';
+        $data .= file_get_contents(public_path('css/app.css'));
+
+        $target = array('@charset "UTF-8";');
+        $change = array('');
+
+        $data = str_replace($target,$change,$data);
+
+        return $data;
     }
 }
