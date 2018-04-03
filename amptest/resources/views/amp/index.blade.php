@@ -36,6 +36,43 @@
 @endsection
 
 @section('content')
+
+<amp-state
+  id="favoriteWithCount"
+  credentials="include"
+  src="/amp/favorite-with-count">
+</amp-state>
+
+<form method="post"
+  action-xhr="/favorite-with-count"
+  target="_top"
+  on="submit:AMP.setState({
+    favoriteWithCount: {
+      value: !favoriteWithCount.value
+    }
+  })">
+  <amp-list
+    width="50" height="50"
+    credentials="include"
+    items="."
+    src="/amp/favorite-with-count">
+    <template type="amp-mustache">
+      <input type="submit"
+        [class]="favoriteWithCount.value ? 'yes' : 'no'"
+        value=""
+        aria-label="Favorite Toggle">
+        @{{value}}
+    </template>
+    <div placeholder>
+      <input type="submit"
+        disabled
+        class="heart-loading"
+        value=""
+        aria-label="favorite placeholder">
+    </div>
+  </amp-list>
+</form>
+
 <amp-list
   width="auto"
   height="400"
@@ -54,11 +91,6 @@
   </template>
 </amp-list>
 @endsection
-
-<amp-state id="favorite"
-  credentials="include"
-  src="/favorite">
-</amp-state>
 
 @section('footer')
 copyright @2018

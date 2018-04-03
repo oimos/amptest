@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 
+use App\Http\Resources\FavoriteResource;
+use App\Favorites;
 use App\Http\Resources\CryptoResource;
 use App\Crypto;
 
@@ -20,7 +22,7 @@ class AmpController extends Controller
             $param = ['name' => $request->name];
             $items = DB::select('select * from cryptos where name = :name', $param);
         } else {
-            $items = DB::table('cryptos')->get();;
+            $items = DB::table('cryptos')->get();
         }
         return view('amp.index', ['items' => $items, 'styles' => $styles]);
     }
@@ -30,6 +32,13 @@ class AmpController extends Controller
         $name = $request->name;
         $items = DB::table('cryptos')->where('name', $name)->get();
         return view('amp.index', ['items' => $items]);
+    }
+
+    public function getFavoriteData(Request $request)
+    {
+      // return new FavoriteResource(Favorites::all());
+      $items = DB::table('favorites')->get();
+      return $items;
     }
 
     public function getdata(Request $request)
