@@ -37,6 +37,14 @@
 
 @section('content')
 
+{{--
+<form method="post"
+  action="/amp/favorite-with-count">
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+  <input type="text" name="count" value="12">
+  <input type="submit">
+</form> --}}
+
 <amp-state
   id="favoriteWithCount"
   credentials="include"
@@ -44,13 +52,15 @@
 </amp-state>
 
 <form method="post"
-  action-xhr="/favorite-with-count"
+  action-xhr="/amp/favorite-with-count"
   target="_top"
   on="submit:AMP.setState({
     favoriteWithCount: {
       value: !favoriteWithCount.value
     }
   })">
+  {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
+
   <amp-list
     width="50" height="50"
     credentials="include"

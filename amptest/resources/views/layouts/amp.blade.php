@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>@yield('title')</title>
+    <link rel="amphtml" href="{{$canonical_url}}">
     <link rel="canonical" href="@yield('canonical')">
     <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
     @yield('schema')
@@ -17,6 +18,9 @@
     </style>
   </head>
   <body>
+    <p class="message">
+      このページは　<span class="message_em">{{$message}}</span>　です。
+    </p>
     <nav class="nav">
         @yield('menubar')
     </nav>

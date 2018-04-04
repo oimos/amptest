@@ -10,6 +10,7 @@ use App\Http\Resources\FavoriteResource;
 use App\Favorites;
 use App\Http\Resources\CryptoResource;
 use App\Crypto;
+use App\Http\Requests\PostRequest;
 
 class AmpController extends Controller
 {
@@ -39,6 +40,18 @@ class AmpController extends Controller
       // return new FavoriteResource(Favorites::all());
       $items = DB::table('favorites')->get();
       return $items;
+    }
+
+    public function storeFavoriteData(Request $request)
+    {
+      // DB::table('favorites')
+      //       ->where('value', 1)
+      //       ->update(['count' => 70]);
+      $favorites = new Favorites;
+      $favorites->value = $request->input('value');
+      $favorites->count = $request->input('count');
+      $favorites->save();
+      return view('welcome', ['msg' => "POST has been sent!"]);
     }
 
     public function getdata(Request $request)

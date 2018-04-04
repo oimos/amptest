@@ -90,6 +90,16 @@
                     <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
+
+
+            <form method="post"
+              action="{{url('/amp/favorite-with-count')}}">
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <input type="text" name="value" value="2">
+              <input type="text" name="count" value="50">
+              <input type="submit">
+            </form>
+
         </div>
     </body>
 </html>
