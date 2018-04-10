@@ -1,6 +1,7 @@
 
 // Fonts
 // @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
 // Variables
 // @import "variables";
@@ -15,4 +16,18 @@
 
 .h-menu{
   border: 1px solid red;
+}
+
+form.amp-form-submit-success [submit-success],
+form.amp-form-submit-error [submit-error]{
+  margin-top: 16px;
+}
+form.amp-form-submit-success [submit-success] {
+  color: green;
+}
+form.amp-form-submit-error [submit-error] {
+  color: red;
+}
+form.amp-form-submit-success.hide-inputs > input {
+  display: none;
 }

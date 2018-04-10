@@ -16,7 +16,7 @@ class PageController extends Controller
 {
     public function index(Request $request)
     {
-      $parse_url = $this->parseUrl($request);;
+      $parse_url = $this->parseUrl($request);
       $is_amp = $this->isAmp($parse_url);
 
       // canonical設定用URL
@@ -25,12 +25,18 @@ class PageController extends Controller
 
       if($is_amp){
         $styles = $this->getStyleCustom();
-
+        // dd($styles);
         $message = 'AMP Page';
-        return view('amp.index', ['items' => $items, 'message' => $message, 'canonical_url' => $canonical_url, 'styles' => $styles]);
+        $data = [
+          'items' => $items,
+          'message' => $message,
+          'canonical_url' => $canonical_url,
+          'styles' => $styles
+        ];
+        return view('amp.index')->with($data);
       } else {
         $message = 'Non AMP';
-        return view('page', ['message' => $message, 'canonical_url' => $canonical_url]);
+        return view('page', ["message" => $message, "canonical_url" => $canonical_url]);
       }
     }
 
@@ -56,10 +62,10 @@ class PageController extends Controller
     }
 
     private function getCanonicalUrl($url){
-      if(strpos($url,'amp') !== false){
-        return str_replace('amp', '', $url);
+      if(strpos($url, '/amp/') !== false){
+        return str_replace('/amp/', '', $url);
       } else {
-        return $url;
+       return $url;
       }
     }
 
@@ -74,6 +80,4 @@ class PageController extends Controller
 
       return $data;
     }
-
-
 }

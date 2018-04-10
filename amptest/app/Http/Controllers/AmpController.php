@@ -50,8 +50,21 @@ class AmpController extends Controller
       $favorites = new Favorites;
       $favorites->value = $request->input('value');
       $favorites->count = $request->input('count');
+
       $favorites->save();
-      return view('welcome', ['msg' => "POST has been sent!"]);
+
+      $items = DB::table('favorites')->get();
+
+      // dd($items);
+      return view('amp.index', ['items' => $items]);
+    }
+
+    public function updateFavoriteData(Request $request)
+    {
+      $favorites = new Favorites;
+      $favorites->value = $request->input('value');
+      $favorites->count = $request->input('count');
+      $favorites->save();
     }
 
     public function getdata(Request $request)

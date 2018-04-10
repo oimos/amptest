@@ -10,6 +10,7 @@ class CryptoController extends Controller
     public function index(Request $request)
     {
         $items = Crypto::all();
-        return view('amp.index', ['items' => $items]);
+        // return view('amp.index', ['items' => $items]);
+        return $items;
     }
 }
